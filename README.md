@@ -1,6 +1,6 @@
 # DIY-PC-E-Brake
 
-The code has been writen with the linear Hall-Effect IC OH49E as the used sensor in mind.
+The code has been writen with the linear Hall-Effect IC OH49E in mind.
 
 ## Hardware
 * E-Brake Lever
