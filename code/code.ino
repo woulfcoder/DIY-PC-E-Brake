@@ -18,15 +18,12 @@ void setup () {
   Joystick.setBrakeRange(intDeadzoneMin, intDeadzoneMax);
   
   Joystick.begin();
-  Serial.begin(9600);
 
   pinMode(analogIn, INPUT);
 }
 
 void loop () {
   intAnalogRead = analogRead(analogIn);
-
-  Serial.write(intAnalogRead);
 
   if (intAnalogRead > intDeadzoneMin && intAnalogRead < intDeadzoneMax) {
     Joystick.setBrake(intAnalogRead);
