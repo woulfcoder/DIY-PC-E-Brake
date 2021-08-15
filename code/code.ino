@@ -6,13 +6,17 @@
 
 #include <Joystick.h>
 
-Joystick_ Joystick;
+Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID, JOYSTICK_TYPE_MULTI_AXIS,
+  0, 0, false, false, false, false, false, false, false, false, true, true, false);
 
 #define analogIn A0
 
-unsigned int intAnalogRead;
-int intDeadzoneMin = 515;
-int intDeadzoneMax = 850;
+
+// set to define the range of the analog read input
+static int intDeadzoneMin = 510;
+static int intDeadzoneMax = 840;
+
+unsigned int intAnalogRead = 0;
 
 void setup () {
   Joystick.setBrakeRange(intDeadzoneMin, intDeadzoneMax);
@@ -25,7 +29,12 @@ void setup () {
 void loop () {
   intAnalogRead = analogRead(analogIn);
 
-  if (intAnalogRead > intDeadzoneMin && intAnalogRead < intDeadzoneMax) {
+  if (intAnalogRead > intDeadzoneMin) {
     Joystick.setBrake(intAnalogRead);
   }
+  else {
+    Joystick.setBrake(0);
+  }
+  
+  delay(10);
 }
